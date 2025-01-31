@@ -61,7 +61,7 @@ class AddTestGroup2(unittest.TestCase):
         self.open_homepage(wd)
         self.login_form(wd, "admin", "secret")
         self.open_groups_page(wd)
-        self.create_group(wd, Group(" ", " ", " "))
+        self.create_group(wd, Group("", "", ""))
         self.return_group_page(wd)
         self.logout(wd)
 
