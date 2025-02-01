@@ -38,9 +38,9 @@ class AddConact(unittest.TestCase):
         wd.find_element_by_name("lastname").send_keys(contact.lastName)
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        #driver.find_element_by_name("photo").click()
-        #driver.find_element_by_name("photo").clear()
-        #driver.find_element_by_name("photo").send_keys("C:\\fakepath\\unnamed.jpg")
+        # wd.find_element_by_name("photo").click()
+        # wd.find_element_by_name("photo").clear()
+        # wd.find_element_by_name("photo").send_keys('D:\\python_traning\\unnamed.jpg')
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(contact.title)
@@ -92,8 +92,9 @@ class AddConact(unittest.TestCase):
         wd.find_element_by_name("ayear").clear()
         wd.find_element_by_name("ayear").send_keys(contact.anniversaryYear)
         wd.find_element_by_name("new_group").click()
-        wd.find_element_by_name("new_group").click()
+        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.selectGroup)
         wd.find_element_by_xpath("//input[20]").click()
+
 
     def open_home(self, wd):
         wd.find_element_by_link_text("home").click()
@@ -106,13 +107,13 @@ class AddConact(unittest.TestCase):
         self.open_login_page(wd)
         self.login_form(wd)
         self.new_contact_form(wd)
-        self.fill_form(wd, Contact('Svatoslav', '__test', 'Ivanov',
+        self.fill_form(wd, Contact('Svyatoslav', '__test', 'Ivanov',
                                    'aekus_test', 'new_title', 'new_comp',
                                    'new_test_addr', 'test_home', '123546',
                                    'new_test_work', '784512', 'new_test_email1',
                                    'email2', '', 'new_test_homepage',
                                    '16', 'December', '1880',
-                                   '10', 'May', '1650'))
+                                   '10', 'May', '1650', 'test_group'))
         self.open_home(wd)
         self.logout(wd)
 

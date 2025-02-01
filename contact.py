@@ -2,11 +2,12 @@ class Contact:
     def __init__(self, fname, mname, lname, nickname,
                  title, company, address, home, mobile,
                  work, fax, email1, email2, email3, homepage,
-                 bday, bmonth, byear, anniverday, annivermonth, anniveryear):
+                 bday, bmonth, byear, anniverday, annivermonth, anniveryear, group):
         self.firstName = fname
         self.middleName = mname
         self.lastName = lname
         self.nickname = nickname
+        #self.photo = photo
         self.title = title
         self.company = company
         self.address = address
@@ -24,3 +25,4 @@ class Contact:
         self.anniversaryDay = anniverday
         self.anniversaryMonth = annivermonth
         self.anniversaryYear = anniveryear
+        self.selectGroup = group
