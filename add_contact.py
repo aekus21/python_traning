@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
@@ -31,16 +29,14 @@ class AddConact(unittest.TestCase):
     def fill_form(self, wd, contact):
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstName)
+        wd.find_element_by_name("firstname").send_keys(contact.first_name)
         wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.middleName)
+        wd.find_element_by_name("middlename").send_keys(contact.middle_name)
         wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact.lastName)
+        wd.find_element_by_name("lastname").send_keys(contact.last_name)
         wd.find_element_by_name("nickname").clear()
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
-        # wd.find_element_by_name("photo").click()
-        # wd.find_element_by_name("photo").clear()
-        # wd.find_element_by_name("photo").send_keys('D:\\python_traning\\unnamed.jpg')
+        wd.find_element_by_name("photo").send_keys(contact.photo)
         wd.find_element_by_name("title").click()
         wd.find_element_by_name("title").clear()
         wd.find_element_by_name("title").send_keys(contact.title)
@@ -74,25 +70,21 @@ class AddConact(unittest.TestCase):
         wd.find_element_by_name("homepage").click()
         wd.find_element_by_name("homepage").clear()
         wd.find_element_by_name("homepage").send_keys(contact.homepage)
-        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.birthDay)
-        #wd.find_element_by_xpath("//option[@value='bday']").click()
+        Select(wd.find_element_by_name("bday")).select_by_visible_text(contact.birth_day)
         wd.find_element_by_name("bmonth").click()
-        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.birthMonth)
-        #wd.find_element_by_xpath("//option[@value='August']").click()
+        Select(wd.find_element_by_name("bmonth")).select_by_visible_text(contact.birth_month)
         wd.find_element_by_name("byear").click()
         wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact.birthYear)
+        wd.find_element_by_name("byear").send_keys(contact.birth_year)
         wd.find_element_by_name("aday").click()
-        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.anniversaryDay)
-        #wd.find_element_by_xpath("//select[3]/option[26]").click()
+        Select(wd.find_element_by_name("aday")).select_by_visible_text(contact.anniversary_day)
         wd.find_element_by_name("amonth").click()
-        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.anniversaryMonth)
-        #wd.find_element_by_xpath("//select[4]/option[13]").click()
+        Select(wd.find_element_by_name("amonth")).select_by_visible_text(contact.anniversary_month)
         wd.find_element_by_name("ayear").click()
         wd.find_element_by_name("ayear").clear()
-        wd.find_element_by_name("ayear").send_keys(contact.anniversaryYear)
+        wd.find_element_by_name("ayear").send_keys(contact.anniversary_year)
         wd.find_element_by_name("new_group").click()
-        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.selectGroup)
+        Select(wd.find_element_by_name("new_group")).select_by_visible_text(contact.select_group)
         wd.find_element_by_xpath("//input[20]").click()
 
 
@@ -108,7 +100,8 @@ class AddConact(unittest.TestCase):
         self.login_form(wd)
         self.new_contact_form(wd)
         self.fill_form(wd, Contact('Svyatoslav', '__test', 'Ivanov',
-                                   'aekus_test', 'new_title', 'new_comp',
+                                   'aekus_test', 'D:\python_traning\image.jpg',
+                                   'new_title', 'new_comp',
                                    'new_test_addr', 'test_home', '123546',
                                    'new_test_work', '784512', 'new_test_email1',
                                    'email2', '', 'new_test_homepage',
