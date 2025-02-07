@@ -74,3 +74,10 @@ class ContactHelper:
     def open_home(self):
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
+
+    def delete_first_contact(self):
+        wd = self.app.wd
+        self.open_home()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("//Delete").click()
+        self.open_home()
