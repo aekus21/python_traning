@@ -1,6 +1,6 @@
 class GroupHelper:
-    def __init__(self, group):
-        self.group = group
+    def __init__(self, app):
+        self.group = app
 
     def open_groups_page(self):
         wd = self.group.wd
@@ -29,3 +29,10 @@ class GroupHelper:
     def return_group_page(self):
         wd = self.group.wd
         wd.find_element_by_link_text("groups").click()
+
+    def delete_first_group(self):
+        wd = self.group.wd
+        self.open_groups_page()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name("delete").click()
+        self.return_group_page()
