@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from model.group import Group
-from conftest import app
 
 def test_add_group(app):
     app.session.login_form("admin", "secret")
