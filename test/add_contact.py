@@ -10,7 +10,7 @@ def app(request):
     return fixture
 
 def test_add_contact(app):
-    app.login_form("admin", "secret")
+    app.session.login_form("admin", "secret")
     app.new_contact_form()
     app.fill_form(Contact('Svyatoslav', '__test', 'Ivanov',
                                    'aekus_test', 'D:\python_traning\image.jpg',
@@ -20,4 +20,4 @@ def test_add_contact(app):
                                    'email2', '', 'new_test_homepage',
                                    '16', 'December', '1880',
                                    '10', 'May', '1650', 'test_group'))
-    app.logout()
+    app.session.logout()
