@@ -2,14 +2,14 @@ from selenium.webdriver.support.ui import Select
 
 class ContactHelper:
     def __init__(self,app):
-        self.contact = app
+        self.app = app
 
     def new_contact_form(self):
-        wd = self.contact.wd
+        wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
     def fill_form(self, contact):
-        wd = self.contact.wd
+        wd = self.app.wd
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys(contact.first_name)
@@ -72,5 +72,5 @@ class ContactHelper:
         self.open_home()
 
     def open_home(self):
-        wd = self.contact.wd
+        wd = self.app.wd
         wd.find_element_by_link_text("home").click()
