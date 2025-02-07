@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
 from fixture.session import SessionHelper
+from fixture.group import GroupHelper
 
 
 class Application:
@@ -9,39 +10,12 @@ class Application:
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
         self.session = SessionHelper(self)
+        self.group = GroupHelper(self)
 
 # Функции для add_test_group_case2.py
     def open_homepage(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")
-
-    def open_groups_page(self):
-        wd = self.wd
-        # open group page
-        wd.find_element_by_link_text("groups").click()
-
-    def create_group(self, group):
-        wd = self.wd
-        self.open_groups_page()
-        # create new group
-        wd.find_element_by_name("new").click()
-        # fill group info
-        wd.find_element_by_name("group_name").click()
-        wd.find_element_by_name("group_name").clear()
-        wd.find_element_by_name("group_name").send_keys(group.test_name)
-        wd.find_element_by_name("group_header").click()
-        wd.find_element_by_name("group_header").clear()
-        wd.find_element_by_name("group_header").send_keys(group.test_header)
-        wd.find_element_by_name("group_footer").click()
-        wd.find_element_by_name("group_footer").clear()
-        wd.find_element_by_name("group_footer").send_keys(group.test_footer)
-        # submit new group
-        wd.find_element_by_name("submit").click()
-        self.return_group_page()
-
-    def return_group_page(self):
-        wd = self.wd
-        wd.find_element_by_link_text("groups").click()
 
     def destroy(self):
         self.wd.quit()
