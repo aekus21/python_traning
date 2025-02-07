@@ -79,5 +79,5 @@ class ContactHelper:
         wd = self.app.wd
         self.open_home()
         wd.find_element_by_name("selected[]").click()
-        wd.find_element_by_xpath("//Delete").click()
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
         self.open_home()
