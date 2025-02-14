@@ -6,5 +6,8 @@ from fixture.application import Application
 def app(request):
     fixture = Application()
     fixture.session.login_form("admin", "secret")
-    request.addfinalizer(fixture.destroy)
+    def fin():
+        fixture.session.logout()
+        fixture.destroy()
+    request.addfinalizer(fin)
     return fixture

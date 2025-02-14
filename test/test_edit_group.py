@@ -7,4 +7,3 @@ def test_edit_group(app):
                                              'new_data',
                                              'test_group2')))
     app.group.save_new_group_data()
-    app.session.logout()

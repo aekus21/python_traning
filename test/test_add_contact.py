@@ -10,7 +10,7 @@ def test_add_contact_w_group(app):
                                    'email2', '', 'new_test_homepage',
                                    '16', 'December', '1880',
                                    '10', 'May', '1650'), 'test_group2')
-    app.session.logout()
+
 
 def test_add_contact_wo_group(app):
     app.contact.save_contact_wo_group(Contact('Svyatoslav_wo_new_test', '__test', 'Ivanov',
@@ -21,4 +21,3 @@ def test_add_contact_wo_group(app):
                                    'email2', '', 'new_test_homepage',
                                    '16', 'December', '1880',
                                    '10', 'May', '1650'))
-    app.session.logout()
