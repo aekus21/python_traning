@@ -47,6 +47,7 @@ class GroupHelper:
         self.select_first_group()
         wd.find_element_by_name("edit").click()
         self.change_group_data(new_group_data)
+        self.save_new_group_data()
 
     def change_group_data(self, group):
         wd = self.app.wd
