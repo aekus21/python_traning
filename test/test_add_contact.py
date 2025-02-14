@@ -2,7 +2,6 @@
 from model.contact import Contact
 
 def test_add_contact_w_group(app):
-    app.session.login_form("admin", "secret")
     app.contact.save_contact_w_group(Contact('Svyatoslav_new_test', '__test', 'Ivanov',
                                    'aekus_test', 'D:\python_traning\image.jpg',
                                    'new_title', 'new_comp',
@@ -14,7 +13,6 @@ def test_add_contact_w_group(app):
     app.session.logout()
 
 def test_add_contact_wo_group(app):
-    app.session.login_form("admin", "secret")
     app.contact.save_contact_wo_group(Contact('Svyatoslav_wo_new_test', '__test', 'Ivanov',
                                    'aekus_test', 'D:\python_traning\image.jpg',
                                    'new_title', 'new_comp',

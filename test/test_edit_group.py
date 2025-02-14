@@ -2,7 +2,6 @@
 from model.group import Group
 
 def test_edit_group(app):
-    app.session.login_form("admin", "secret")
     app.group.edit_first_group()
     app.group.change_group_data((Group('new_edit_Svyatoslav',
                                              'new_data',
