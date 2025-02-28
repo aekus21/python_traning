@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from operator import index
+from random import randrange
+
 from model.contact import Contact
 
 def test_edit_contact(app):
@@ -12,10 +15,11 @@ def test_edit_contact(app):
                                    '16', 'December', '1880',
                                    '10', 'May', '1650'))
     old_contacts_list = app.contact.get_contact_list()
-    contact = Contact(fname='n222ew_edit!!@_Svyatoslav', lname='ddd')
-    contact.id = old_contacts_list[0].id
-    app.contact.edit_contact(contact)
+    contact = Contact(fname='n222ew_edit!!@_Svyatoslav', lname='dd11d')
+    index = randrange(len(old_contacts_list))
+    contact.id = old_contacts_list[index].id
+    app.contact.edit_contact_by_index(index, contact)
     new_contact_list = app.contact.get_contact_list()
     assert len(old_contacts_list) == len(new_contact_list)
-    old_contacts_list[0] = contact
+    old_contacts_list[index] = contact
     assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)

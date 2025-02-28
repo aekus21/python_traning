@@ -87,20 +87,23 @@ class ContactHelper:
         if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_xpath("//input[@value='Send e-Mail']")) > 0):
             wd.find_element_by_link_text("home").click()
 
-    #выбирает и удаляет первый контакт
     def delete_first_contact(self):
+        self.delete_contact_by_index(0)
+
+    #выбирает и удаляет первый контакт
+    def delete_contact_by_index(self, index):
         wd = self.app.wd
         self.open_home()
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         self.open_home()
         self.contact_cache = None
 
     # открывает контакт на редактирование
-    def open_contact_editor(self):
+    def open_contact_editor(self, index):
         wd = self.app.wd
         self.open_home()
-        wd.find_element_by_xpath("//img[@alt='Edit']").click()
+        wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
 
     # сохраняет контакт после редактирования
     def save_new_contact_data(self):
@@ -125,11 +128,14 @@ class ContactHelper:
         self.save_contact()
         self.contact_cache = None
 
+    def edit_contact(self):
+        self.edit_contact_by_index(0)
+
     # редактирование контакта
-    def edit_contact(self, new_contact_data):
+    def edit_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
-        self.open_contact_editor()
-        self.change_group_data(new_contact_data)
+        self.open_contact_editor(index)
+        self.change_contact_data(new_contact_data)
         self.save_new_contact_data()
         self.contact_cache = None
 
@@ -138,7 +144,7 @@ class ContactHelper:
         self.open_home()
         return len(wd.find_elements_by_name("selected[]"))
 
-    def change_group_data(self, contact):
+    def change_contact_data(self, contact):
         wd = self.app.wd
         self.change_field_value("firstname", contact.first_name)
         self.change_field_value("lastname", contact.last_name)
