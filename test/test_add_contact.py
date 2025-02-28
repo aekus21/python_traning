@@ -29,7 +29,7 @@ def test_add_contact_wo_group(app):
                                    '16', 'December', '1880',
                                    '10', 'May', '1650')
     app.contact.save_contact_wo_group(contact)
+    assert len(old_contacts_list) + 1 == app.contact.count()
     new_contact_list = app.contact.get_contact_list()
-    assert len(old_contacts_list) + 1 == len(new_contact_list)
     old_contacts_list.append(contact)
     assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)
