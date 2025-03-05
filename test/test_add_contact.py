@@ -20,7 +20,7 @@ from model.contact import Contact
 
 def test_add_contact_wo_group(app):
     old_contacts_list = app.contact.get_contact_list()
-    contact = Contact('Svyatoslav_wo_new_test', '__test', 'Ivanov',
+    contact = Contact('Svyatoslav_wo_new_test3', '__test', 'Ivanov',
                                    'aekus_test', 'D:\python_traning\image.jpg',
                                    'new_title', 'new_comp',
                                    'new_test_addr', 'test_home', '123546',
