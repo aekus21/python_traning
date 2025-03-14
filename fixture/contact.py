@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import Select
 from model.contact import Contact
+import re
 
 class ContactHelper:
     def __init__(self,app):
@@ -34,13 +35,13 @@ class ContactHelper:
         wd.find_element_by_name("address").send_keys(contact.address)
         wd.find_element_by_name("home").click()
         wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact.home)
+        wd.find_element_by_name("home").send_keys(contact.homephone)
         wd.find_element_by_name("mobile").click()
         wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact.mobile)
+        wd.find_element_by_name("mobile").send_keys(contact.mobilephone)
         wd.find_element_by_name("work").click()
         wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact.work)
+        wd.find_element_by_name("work").send_keys(contact.workphone)
         wd.find_element_by_name("fax").click()
         wd.find_element_by_name("fax").clear()
         wd.find_element_by_name("fax").send_keys(contact.fax)
@@ -99,11 +100,17 @@ class ContactHelper:
         self.open_home()
         self.contact_cache = None
 
-    # открывает контакт на редактирование
+    # открывает контакт на редактирование по индексу
     def open_contact_editor(self, index):
         wd = self.app.wd
         self.open_home()
         wd.find_elements_by_xpath("//img[@alt='Edit']")[index].click()
+
+    # открывает контакт на просмотр по индексу
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.open_home()
+        wd.find_elements_by_xpath("//img[@alt='Details']")[index].click()
 
     # сохраняет контакт после редактирования
     def save_new_contact_data(self):
@@ -153,9 +160,9 @@ class ContactHelper:
         self.change_field_value("title", contact.title)
         self.change_field_value("company", contact.company)
         self.change_field_value("address", contact.address)
-        self.change_field_value("home", contact.home)
-        self.change_field_value("mobile", contact.mobile)
-        self.change_field_value("work", contact.work)
+        self.change_field_value("home", contact.homephone)
+        self.change_field_value("mobile", contact.mobilephone)
+        self.change_field_value("work", contact.workphone)
         self.change_field_value("fax", contact.fax)
         self.change_field_value("email", contact.email1)
         self.change_field_value("email2", contact.email2)
@@ -188,5 +195,29 @@ class ContactHelper:
                 for cell in cells:
                     texts.append(cell.text)
                 id = element.find_element_by_name('selected[]').get_attribute('value')
-                self.contact_cache.append(Contact(fname=texts[2], lname=texts[1], ids=id))
+                all_phones = cells[5].text
+                self.contact_cache.append(Contact(fname=texts[2], lname=texts[1], ids=id,
+                                                  all_phones_from_homepage = all_phones))
         return list(self.contact_cache)
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_editor(index)
+        firstname = wd.find_element_by_name('firstname').get_attribute('value')
+        lastname = wd.find_element_by_name('lastname').get_attribute('value')
+        id = wd.find_element_by_name('id').get_attribute('value')
+        homephone = wd.find_element_by_name('home').get_attribute('value')
+        workphone = wd.find_element_by_name('work').get_attribute('value')
+        mobilephone = wd.find_element_by_name('mobile').get_attribute('value')
+        return Contact(fname=firstname, lname=lastname, ids=id, homephone=homephone,
+                       workphone=workphone, mobilephone=mobilephone)
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id('content').text
+        homephone = re.search('H: (.*)', text).group(1)
+        workphone = re.search('W: (.*)', text).group(1)
+        mobilephone = re.search('M: (.*)', text).group(1)
+        return Contact(homephone=homephone,
+                       workphone=workphone, mobilephone=mobilephone)

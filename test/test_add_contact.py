@@ -23,8 +23,8 @@ def test_add_contact_wo_group(app):
     contact = Contact('Svyatoslav_wo_new_test3', '__test', 'Ivanov',
                                    'aekus_test', 'D:\python_traning\image.jpg',
                                    'new_title', 'new_comp',
-                                   'new_test_addr', 'test_home', '123546',
-                                   'new_test_work', '784512', 'new_test_email1',
+                                   'new_test_addr', 'home_phone', 'mobile_phone',
+                                   'work_phone', 'fax_phone', 'new_test_email1',
                                    'email2', '', 'new_test_homepage',
                                    '16', 'December', '1880',
                                    '10', 'May', '1650')
