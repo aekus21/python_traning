@@ -28,7 +28,7 @@ class Contact:
         self.anniversary_day = anniverday
         self.anniversary_month = annivermonth
         self.anniversary_year = anniveryear
-        self.select_group = group
+        # self.select_group = group
         self.id = ids
         self.all_phones_from_homepage = all_phones_from_homepage
         self.all_email = all_email
