@@ -18,7 +18,7 @@ def clear(s):
     return re.sub('[() -]', '', s)
 
 def clear_space(s):
-    return s.strip()
+    return re.sub('  ', ' ', s.strip())
 
 def merge_phones_like_on_homepage(contact):
     return "\n".join(filter(lambda x: x != "",

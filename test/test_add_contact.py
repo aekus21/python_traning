@@ -5,6 +5,7 @@ from model.contact import Contact
 import pytest
 import string
 import random
+import re
 
 # закомментировал блок, пока что не работает на контакте с группой
 # def test_add_contact_w_group(app):
@@ -22,6 +23,7 @@ import random
 #     assert len(old_contacts_list) + 1 == len(new_contact_list)
 #     old_contacts_list.append(contact)
 #     assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)
+
 
 def random_personal_data(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + " "*20
@@ -41,9 +43,9 @@ def randon_year_data():
     return str(random.randrange(1700, 2250))
 
 test_data_wo_group = [
-    Contact(fname = random_personal_data("firstName", maxlen = 10),
+    Contact(fname = re.sub('  ', ' ', random_personal_data("firstName", maxlen = 10)).strip(),
             mname = random_personal_data("middleName", maxlen = 10),
-            lname = random_personal_data("lastnameName", maxlen = 10),
+            lname = re.sub('  ', ' ', random_personal_data("lastnameName", maxlen = 10)).strip(),
             nickname = random_personal_data("nickName", maxlen = 10),
             title = random_personal_data("title", maxlen = 10),
             photo= 'D:\python_traning\image.jpg',
