@@ -1,5 +1,6 @@
 from random import randrange
 import re
+from conftest import app
 
 def test_compare_contacts_on_homepage(app):
     index = randrange(len(app.contact.get_contact_list()))
