@@ -17,14 +17,17 @@ def test_compare_contacts_on_homepage(app):
 def clear(s):
     return re.sub('[() -]', '', s)
 
+def clear_space(s):
+    return s.strip()
+
 def merge_phones_like_on_homepage(contact):
     return "\n".join(filter(lambda x: x != "",
                             map(lambda x: clear(x),
                                 filter(lambda x: x is not None, [contact.homephone, contact.mobilephone, contact.workphone]))))
 
 def merge_emails_like_on_homepage(email):
-    return "\n".join(filter(lambda x: x != "",
-                            filter (lambda x: x is not None,[email.email1, email.email2, email.email3])))
+    return "\n".join(map(lambda x: clear_space(x),
+                         filter(lambda x: x is not None,[email.email1, email.email2, email.email3])))
 
 
 
