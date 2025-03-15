@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-from importlib.metadata import pass_none
-
+from test.conftest import app
 from model.contact import Contact
 import pytest
 import string
