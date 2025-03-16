@@ -13,8 +13,14 @@ except getopt.GetoptError as err:
     getopt.usage()
     sys.exit(2)
 
-n = 2
+n = 5
 f = "data/contacts.json"
+
+for o, a in opts:
+    if o == "-n":
+        n = int(a)
+    elif o == "-f":
+        f = a
 
 def random_personal_data(prefix, maxlen):
     symbols = string.ascii_letters + string.digits + " "*20
