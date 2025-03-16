@@ -1,4 +1,5 @@
-import json
+from xml.etree.ElementTree import indent
+import jsonpickle
 from model.group import Group
 import string
 import random
@@ -12,7 +13,7 @@ except getopt.GetoptError as err:
     getopt.usage()
     sys.exit(2)
 
-n = 5
+n = 2
 f = "data/groups.json"
 
 for o, a in opts:
@@ -31,8 +32,8 @@ testdata = [Group("", "", "")] + [
     for i in range(n)
 ]
 
-file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          '..', f)
+file = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', f)
 
 with open(file, "w") as out:
-    out.write(json.dumps(testdata, default= lambda x: x.__dict__, indent=4))
+    jsonpickle.set_encoder_options('json', indent=2)
+    out.write(jsonpickle.encode(testdata))
