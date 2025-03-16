@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from conftest import app
 from data.add_group import testdata
 from model.group import Group
 import pytest

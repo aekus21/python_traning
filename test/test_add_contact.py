@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from conftest import app
 from model.contact import Contact
 import pytest
 import string
