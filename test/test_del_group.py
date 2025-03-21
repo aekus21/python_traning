@@ -1,9 +1,8 @@
 import random
-from operator import index
-from random import randrange
 from model.group import Group
 
-def test_delete_some_group(app, db):
+
+def test_delete_some_group(app, db, check_ui):
     if len(db.get_group_list()) == 0:
         app.group.create(Group('new_test_group', 'header', 'footer'))
     old_groups = db.get_group_list()
@@ -13,3 +12,7 @@ def test_delete_some_group(app, db):
     assert len(old_groups) - 1 == len(new_groups)
     old_groups.remove(group)
     assert old_groups == new_groups
+    db_list = filter(lambda x: x is not None, (db.get_group_list()))
+    if check_ui:
+        assert sorted(new_groups, key = Group.id_or_max) == sorted(db_list, key= Group.id_or_max)
+
