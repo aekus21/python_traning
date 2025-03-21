@@ -8,7 +8,8 @@ class DbFixture:
         self.database = database
         self.user = user
         self.password = password
-        self.connection = pymysql.connect(host = host, database = database, user = user, password= password)
+        self.connection = pymysql.connect(host = host, database = database, user = user, password= password,
+                                          autocommit = True)
 
     def get_group_list(self):
         list = []
