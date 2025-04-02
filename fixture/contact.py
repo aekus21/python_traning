@@ -100,6 +100,18 @@ class ContactHelper:
         self.open_home()
         self.contact_cache = None
 
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.open_home()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        self.open_home()
+        self.contact_cache = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+
     # открывает контакт на редактирование по индексу
     def open_contact_editor(self, index):
         wd = self.app.wd
