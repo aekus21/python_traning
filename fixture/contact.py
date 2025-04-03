@@ -249,3 +249,4 @@ class ContactHelper:
         wd.find_element_by_name('to_group').click()
         Select(wd.find_element_by_name("to_group")).select_by_visible_text(group_name)
         wd.find_element_by_name('add').click()
+
