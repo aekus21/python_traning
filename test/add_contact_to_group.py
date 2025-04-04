@@ -1,7 +1,7 @@
 import random
 import re
-import select
-
+from model.group import Group
+from model.contact import Contact
 from fixture.orm import ORMFixture
 
 
@@ -9,7 +9,13 @@ db_connect = ORMFixture(host = '127.0.0.1', database = 'addressbook', user = 'ro
 
 def test_add_contact_to_group(app, db):
     contact_list = db.get_contact_list()
+    if len(contact_list) == 0:
+        app.contact.fill_form_wo_group(Contact(fname='test',lname='test_laname',address='test_address'))
+    contact_list = db.get_contact_list()
     contact = random.choice(contact_list)
+    group_list = db.get_group_list()
+    if len(group_list) == 0:
+        app.group.create(Group(name='test',header='header', footer='footer'))
     group_list = db.get_group_list()
     group = random.choice(group_list)
     app.contact.add_contact_to_group(contact.id, group.id)

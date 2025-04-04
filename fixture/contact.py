@@ -247,6 +247,7 @@ class ContactHelper:
         self.open_home()
         self.select_contact_by_id(contact_id)
         wd.find_element_by_name('to_group').click()
-        wd.find_elements_by_xpath('//option[@value="%s"]' % group_id)[0].click()
+        wd.find_elements_by_css_selector('select[name="to_group"] > option[value="%s"]' % group_id)[0].click()
+        # wd.find_elements_by_xpath('option[value="%s"]' % group_id)[0].click()
         wd.find_element_by_name('add').click()
 
