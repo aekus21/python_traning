@@ -20,7 +20,7 @@ class DbFixture:
                            'from group_list')
             for row in cursor:
                 (id, name, header, footer) = row
-                list.append(Group(ids = str(id), name = name, header = header, footer = footer))
+                list.append(Group(id = str(id), name = name, header = header, footer = footer))
         finally:
             cursor.close()
         return list
@@ -32,7 +32,7 @@ class DbFixture:
             cursor.execute('select group_id from address_in_groups')
             for row in cursor:
                 (id) = row
-                list.append(Group(ids=str(id)))
+                list.append(Group(id=str(id)))
         finally:
             cursor.close()
         return list
@@ -45,7 +45,7 @@ class DbFixture:
                                'from addressbook')
             for row in cursor:
                 (id, firstname, lastname) = row
-                contact_list.append(Contact(ids = str(id), fname = firstname, lname = lastname))
+                contact_list.append(Contact(id = str(id), fname = firstname, lname = lastname))
         finally:
             cursor.close()
         return contact_list

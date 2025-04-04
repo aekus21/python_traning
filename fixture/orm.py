@@ -32,7 +32,7 @@ class ORMFixture:
 
     def convert_groups_to_model(self, groups):
         def convert(group):
-            return Group(ids=str(group.id), name = group.name, header = group.header, footer = group.footer)
+            return Group(id=str(group.id), name = group.name, header = group.header, footer = group.footer)
         return list(map(convert, groups))
 
     def convert_contacts_to_model(self, contacts):
