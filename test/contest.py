@@ -71,4 +71,3 @@ def db(request):
         dbfixture.destroy()
     request.addfinalizer(fin)
     return dbfixture
-

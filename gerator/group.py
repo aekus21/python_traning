@@ -1,4 +1,3 @@
-from xml.etree.ElementTree import indent
 import jsonpickle
 from model.group import Group
 import string
