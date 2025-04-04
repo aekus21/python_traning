@@ -5,7 +5,7 @@ class Contact:
                  title = None, company = None, address = None, homephone = None, mobilephone = None,
                  workphone = None, fax = None, email1 = None, email2 = None, email3 = None, homepage = None,
                  bday = None, bmonth = None, byear = None, anniverday = None, annivermonth = None,
-                 anniveryear = None, group = None, all_phones_from_homepage = None, all_email = None):
+                 anniveryear = None, all_phones_from_homepage = None, all_email = None):
         self.id = id
         self.first_name = fname
         self.middle_name = mname
@@ -29,8 +29,6 @@ class Contact:
         self.anniversary_day = anniverday
         self.anniversary_month = annivermonth
         self.anniversary_year = anniveryear
-        # self.select_group = group
-        #self.id = ids
         self.all_phones_from_homepage = all_phones_from_homepage
         self.all_email = all_email
 

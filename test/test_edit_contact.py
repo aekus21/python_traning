@@ -5,13 +5,13 @@ from model.contact import Contact
 def test_edit_contact(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.save_contact_wo_group(Contact('Svyatoslav_wo_new', '_test', 'Ivanov',
-                                   'aekus_test', 'D:\python_traning\image.jpg',
+                                   'aekus_test', 'тест',
                                    'new_title', 'new_comp',
                                    'new_test_addr', 'test_home', '123546',
                                    'new_test_work', '784512', 'new_test_email1',
-                                   'email2', '', 'new_test_homepage',
-                                   '16', 'December', '1880',
-                                   '10', 'May', '1650'))
+                                   'email2', '', 'email3',
+                                   'bla bla', '12', 'December',
+                                   '1032', '2', 'May', '1344'))
     old_contacts_list = db.get_contact_list()
     contact = Contact(fname='Svyat132', lname='dd11d')
     index = randrange(len(old_contacts_list))
