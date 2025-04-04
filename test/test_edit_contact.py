@@ -20,5 +20,7 @@ def test_edit_contact(app, db, check_ui):
     new_contact_list = db.get_contact_list()
     assert len(old_contacts_list) == len(new_contact_list)
     old_contacts_list[index] = contact
+    db_list = filter(lambda x: x is not None, (db.get_contact_list()))
+    assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)
     if check_ui:
-        assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(new_contact_list, key=Contact.id_or_max)
+        assert sorted(old_contacts_list, key=Contact.id_or_max) == sorted(db_list, key=Contact.id_or_max)

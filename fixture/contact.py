@@ -210,7 +210,7 @@ class ContactHelper:
                 all_phones = cells[5].text
                 all_address = cells[3].text
                 all_email = cells [4].text
-                self.contact_cache.append(Contact(fname=texts[2], lname=texts[1], ids=id,
+                self.contact_cache.append(Contact(fname=texts[2], lname=texts[1], id=id,
                                                   all_phones_from_homepage = all_phones, address=all_address,
                                                   all_email = all_email))
         return list(self.contact_cache)
@@ -228,7 +228,7 @@ class ContactHelper:
         email2 = wd.find_element_by_name('email2').get_attribute('value')
         email3 = wd.find_element_by_name('email3').get_attribute('value')
         address = wd.find_element_by_name('address').text
-        return Contact(fname=firstname, lname=lastname, ids=id, homephone=homephone,
+        return Contact(fname=firstname, lname=lastname, id=id, homephone=homephone,
                        workphone=workphone, mobilephone=mobilephone, email1=email1,
                        email2=email2, email3=email3, address=address)
 
