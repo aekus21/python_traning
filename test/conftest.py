@@ -5,8 +5,7 @@ import json
 import os.path
 import jsonpickle
 from fixture.db import DbFixture
-
-
+from fixture.orm import ORMFixture
 
 fixture = None
 target = None
@@ -66,8 +65,5 @@ def load_from_json(file):
 @pytest.fixture(scope='session')
 def db(request):
     db_config = load_config(request.config.getoption('--target'))['db']
-    dbfixture = DbFixture(host= db_config['host'], database = db_config['database'], user = db_config['user'], password= db_config['password'], )
-    def fin():
-        dbfixture.destroy()
-    request.addfinalizer(fin)
+    dbfixture = ORMFixture(host= db_config['host'], database = db_config['database'], user = db_config['user'], password= db_config['password'], )
     return dbfixture
