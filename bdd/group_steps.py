@@ -1,4 +1,4 @@
-from pytest_bdd import given, when, then
+from pytest_bdd import given, when, then, parsers
 from model.group import Group
 
 
@@ -6,7 +6,7 @@ from model.group import Group
 def group_list(db):
     return db.get_group_list()
 
-@given('a new group with {name}, {header} and {footer}', target_fixture='new_group')
+@given(parsers.parse('a new group with {name}, {header} and {footer}'), target_fixture='new_group')
 def new_group(name, header, footer):
     return Group(name=name, header=header, footer=footer)
 
