@@ -19,5 +19,6 @@ def test_delete_some_contact(app, db, check_ui):
     old_contacts_list.remove(contact)
     assert old_contacts_list == new_contact_list
     db_list = filter(lambda x: x is not None, (db.get_contact_list()))
+    assert sorted(new_contact_list, key=Contact.id_or_max) == sorted(db_list, key=Contact.id_or_max)
     if check_ui:
-        assert sorted(new_contact_list, key=Contact.id_or_max) == sorted(db_list, key=Contact.id_or_max)
+        assert sorted(new_contact_list, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)

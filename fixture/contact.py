@@ -108,9 +108,14 @@ class ContactHelper:
         self.open_home()
         self.contact_cache = None
 
-    def select_contact_by_id(self, id):
+    def edit_contact_by_id(self, id, new_contact_data):
         wd = self.app.wd
-        wd.find_element_by_css_selector("input[value='%s']" % id).click()
+        self.open_home()
+        self.select_contact_by_id(id)
+        wd.find_element_by_xpath('//a[contains(@href, "edit.php?id=%s")]' % id).click()
+        self.change_contact_data(new_contact_data)
+        self.save_new_contact_data()
+        self.contact_cache = None
 
     # открывает контакт на редактирование по индексу
     def open_contact_editor(self, index):
@@ -157,6 +162,10 @@ class ContactHelper:
         self.change_contact_data(new_contact_data)
         self.save_new_contact_data()
         self.contact_cache = None
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def count(self):
         wd = self.app.wd
