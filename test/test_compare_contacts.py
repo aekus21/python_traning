@@ -9,7 +9,7 @@ def test_compare_contacts_on_homepage(app):
     assert contact_from_home_page.last_name == contact_from_edit_page.last_name
     assert contact_from_home_page.address == (contact_from_edit_page.address).strip()
     assert contact_from_home_page.all_phones_from_homepage == merge_phones_like_on_homepage(contact_from_edit_page)
-    assert contact_from_home_page.all_email == merge_emails_like_on_homepage(contact_from_edit_page)
+    assert contact_from_home_page.all_email == merge_emails_like_on_homepage(contact_from_edit_page).strip()
 
 
 

@@ -33,12 +33,19 @@ class Contact:
         self.all_email = all_email
 
     def __repr__(self):
-        return '%s:%s:%s' % (self.id, self.first_name, self.last_name)
+        return '%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s' % (self.id, self.first_name, self.last_name, self.address,
+                                   self.workphone, self.homephone, self.mobilephone, self.email3, self.email2, self.email1,
+                                                  self.all_email, self.all_phones_from_homepage)
 
     def __eq__(self, other):
         return ((self.id is None or other.id is None or self.id == other.id)
                 and (self.first_name is None or other.first_name is None or self.first_name == other.first_name)
-                and (self.last_name is None or other.last_name is None or self.last_name == other.last_name))
+                and (self.last_name is None or other.last_name is None or self.last_name == other.last_name)
+                and (self.address is None or other.address is None or self.address == other.address)
+                and (self.all_email is None or other.all_email is None or self.all_email == other.all_email)
+                and (self.all_phones_from_homepage is None or other.all_phones_from_homepage is None
+                     or self.all_phones_from_homepage == other.all_phones_from_homepage)
+                )
 
     def id_or_max(self):
         if self.id:
