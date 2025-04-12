@@ -32,4 +32,5 @@ def test_del_contact_from_group(app, db):
     app.wd.find_element_by_xpath("//option[@value='%s']" % group_id).click()
     app.contact.select_contact_by_id(cont_id)
     app.wd.find_element_by_name('remove').click()
+    assert app.contact.count() == len(db.get_contacts_in_group(group))
     app.open_homepage()
