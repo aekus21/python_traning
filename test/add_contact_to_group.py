@@ -33,8 +33,7 @@ def test_add_contact_to_group(app, db):
     contact_wo_group = db.get_contacts_not_in_group(group)
     contact = random.choice(contact_wo_group)
     app.contact.add_contact_to_group(contact.id, group.id)
-    app.contact.open_home()
-    app.wd.find_element_by_name('group').click()
-    app.wd.find_element_by_xpath("//option[@value='%s']" % group.id).click()
+    app.contact.open_group_w_contact(group)
     assert app.contact.count() == len(db.get_contacts_in_group(group))
+    assert contact in app.contact.get_contact_list()
 

@@ -28,9 +28,8 @@ def test_del_contact_from_group(app, db):
     contact_in_group = db.get_contacts_in_group(group)
     contact_del = random.choice(contact_in_group)
     cont_id = contact_del.id
-    app.wd.find_element_by_name('group').click()
-    app.wd.find_element_by_xpath("//option[@value='%s']" % group_id).click()
-    app.contact.select_contact_by_id(cont_id)
-    app.wd.find_element_by_name('remove').click()
+    app.contact.remove_contact_from_group(cont_id, group_id)
+    app.contact.open_group_w_contact(group)
     assert app.contact.count() == len(db.get_contacts_in_group(group))
+    assert contact_del not in app.contact.get_contact_list()
     app.open_homepage()
